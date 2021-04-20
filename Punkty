@@ -1,0 +1,17 @@
+package teapot;
+
+/**
+ *
+ * @author Patryk
+ */
+class Punkty {
+
+    double wsp1;
+    double wsp2;
+    double wsp3;
+
+    Punkty(double parseDouble, double parseDouble0, double parseDouble1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}
