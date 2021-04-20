@@ -1,0 +1,81 @@
+package teapot;
+
+import java.io.*;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class wzory 
+{
+    public static int silnia(int x){
+        if(x <= 1){
+            return 1;
+                  }
+        else
+            return x * silnia(x-1);
+                                   }
+    
+    public static int symbolNewtona(int n , int k){
+         
+        return silnia(n)/(silnia(k)* silnia(n-k));
+    }
+    @SuppressWarnings("empty-statement")
+    public static void Bezieur( int m, int n ,String plik, LinkedList<Punkty[][]> tablica ) throws IOException {
+            Writer zapis = new FileWriter(plik);
+            zapis.write("x,y,z"+ System.lineSeparator());
+
+            double Tx = 0;
+            double Ty = 0;
+            double Tz = 0;
+
+
+                        //wzory dla krzywych Bezieura 3-go stopnia
+                        for (int abc = 0; abc < tablica.size(); abc++) {
+               
+                        for (double v = 0.0; v <= 1.0; v = v + 0.01) {
+                   
+                        for (double w = 0.0; w <= 1.0; w = w + 0.01) {
+                       
+                        for (int i = 0; i <= m; i++) {
+                            
+                        for (int j = 0; j <= n; j++) {
+
+                            Tx += wzory.symbolNewtona(m, i) * Math.pow(v, i) * Math.pow(1 - v, m - i) * wzory.symbolNewtona(n, j) * Math.pow(w, j) * Math.pow(1 - w, n - j) * tablica.get(abc)[i][j].wsp1;
+                            Ty += wzory.symbolNewtona(m, i) * Math.pow(v, i) * Math.pow(1 - v, m - i) * wzory.symbolNewtona(n, j) * Math.pow(w, j) * Math.pow(1 - w, n - j) * tablica.get(abc)[i][j].wsp2;
+                            Tz += wzory.symbolNewtona(m, i) * Math.pow(v, i) * Math.pow(1 - v, m - i) * wzory.symbolNewtona(n, j) * Math.pow(w, j) * Math.pow(1 - w, n - j) * tablica.get(abc)[i][j].wsp3;
+                            }
+                        }
+
+                        zapis.write(Tx+","+Ty+","+Tz+System.lineSeparator());
+
+                        Tx = 0;
+                        Ty = 0;
+                        Tz = 0;
+                    }
+                }
+                 zapis.close();
+        }
+    }
+    static public LinkedList<Punkty[][]> wczytaj(String plik) throws FileNotFoundException {
+
+        Scanner in = new Scanner(new File(plik));
+        in.useDelimiter(" |  "+System.lineSeparator());
+        LinkedList<Punkty[][]> tablica = new LinkedList<>();
+
+        while(in.hasNextLine()){
+            tablica.add(new Punkty[4][4]);
+            for(int i=0;i<4;i++){
+            for(int j=0;j<4;j++){
+                    tablica.getLast()[i][j] = new Punkty(Double.parseDouble(in.next()), Double.parseDouble(in.next()),Double.parseDouble(in.next()) );
+
+                                }
+                                }
+                                }
+
+        return tablica;
+    }
+
+    static void Bezier(LinkedList<Punkty[][]> wczytaj, int i, int i0, String czajniktxt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+}
