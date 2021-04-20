@@ -1,0 +1,18 @@
+package teapot;
+
+
+import java.io.FileNotFoundException;
+
+public class czajnik {
+
+    
+    public static void main(String[] args) throws FileNotFoundException {
+       // wczytywanie plikow .txt z punktami dla czajnika,filizanki i lyzeczki
+        Maths.Bezier(Maths.wczytaj("czajnik1"),3,3,"czajnik");
+        Maths.Bezier(Maths.wczytaj("filizanka1"),3,3,"filizanka");
+        Maths.Bezier(Maths.wczytaj("lyzeczka1"),3,3,"lyzeczka");
+        
+       
+    }
+    
+}
